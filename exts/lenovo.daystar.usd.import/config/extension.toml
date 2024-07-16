@@ -1,0 +1,66 @@
+[package]
+# Semantic Versioning is used: https://semver.org/
+version = "1.0.0"
+# Lists people or organizations that are considered the "authors" of the package.
+authors = ["Daystar World"]
+# The title and description fields are primarily for displaying extension info in UI
+title = "Daystar World USD Importer"
+description="A extension to use to import usd asset to daystar world."
+# Path (relative to the root) or content of readme markdown file for UI.
+readme  = "docs/README.md"
+# URL of the extension source repository.
+repository = ""
+# One of categories for UI.
+category = "Tool"
+# Keywords for the extension
+keywords = ["Tool", "DW","Daystar World","usd","importer"]
+# Location of change log file in target (final) folder of extension, relative to the root.
+# More info on writing changelog: https://keepachangelog.com/en/1.0.0/
+changelog="docs/CHANGELOG.md"
+# Preview image and icon. Folder named "data" automatically goes in git lfs (see .gitattributes file).
+# Preview image is shown in "Overview" of Extensions window. Screenshot of an extension might be a good preview image.
+preview_image = "data/preview.jpg"
+# Icon is shown in Extensions window, it is recommended to be square, of size 256x256.
+icon = "data/icon.png"
+
+# Use omni.ui to build simple UI
+[dependencies]
+"omni.usd" = {}
+"omni.client" = {}
+"omni.ui" = {}
+"omni.kit.menu.utils" = {}
+"omni.kit.asset_converter" = {}
+"omni.kit.window.content_browser" = {}
+"omni.kit.notification_manager" = {}
+"omni.kit.widget.farm" = {optional=true}
+"omni.kit.widget.prompt" = {}
+"omni.kit.usd.collect" = {}
+"omni.kit.tool.collect" = {}
+"omni.mdl.distill_and_bake" = {optional=true}
+"omni.kit.uiapp" = {}
+"omni.kit.pip_archive" = {}
+
+# Main python module this extension provides, it will be publicly available as "import company.hello.world".
+[[python.module]]
+name = "lenovo.daystar.usd.import"
+
+[[test]]
+args = [
+    "i--/app/asyncRendering=false",
+    "--/app/window/dpiScaleOverride=1.0",
+    "--/app/window/scaleToMonitor=false",
+    "--no-window"
+]
+
+# Extra dependencies only to be used during test run
+dependencies = [
+    "omni.kit.commands",
+    "omni.kit.renderer.core",
+    "omni.kit.renderer.capture",
+    "omni.kit.mainwindow",
+    "omni.kit.primitive.mesh",
+    "omni.kit.ui_test" # UI testing extenson
+]
+
+[python.pipapi]
+requirements = ['requests','json']
