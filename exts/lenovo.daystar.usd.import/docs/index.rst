@@ -1,7 +1,7 @@
 lenovo.dw.usdexporter
 #############################
 
-Example of Python only extension
+Import USD to daystar world  extension
 
 
 .. toctree::
