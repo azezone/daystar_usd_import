@@ -46,9 +46,9 @@ class ExportOptionsWindow:
         if self._cancel_button:
             self._cancel_button.set_clicked_fn(None)
 
-        self._separate_gltf_container = None
+        # self._separate_gltf_container = None
         self._export_animations_containter = None
-        self._mdl_gltf_extension_container = None
+        # self._mdl_gltf_extension_container = None
         self._export_animations_checkbox = None
         self._export_baked_mdl_checkbox = None
         self._export_lights_checkbox = None
@@ -58,7 +58,7 @@ class ExportOptionsWindow:
         self._export_materials_checkbox = None
         self._export_visible_only_checkbox = None
         self._export_separate_gltf_checkbox = None
-        self._export_mdl_gltf_extension_checkbox = None
+        # self._export_mdl_gltf_extension_checkbox = None
 
     def set_import_fn(self, import_fn):
         self._export_fn = import_fn
@@ -107,7 +107,7 @@ class ExportOptionsWindow:
                 self._export_animations_checkbox, self._export_animations_containter = self._build_option_checkbox(
                     "Export Animations", True
                 )
-                self._export_cameras_checkbox, _ = self._build_option_checkbox("Export Cameras", False)
+                # self._export_cameras_checkbox, _ = self._build_option_checkbox("Export Cameras", False)
                 self._export_lights_checkbox, _ = self._build_option_checkbox("Export Lights", False)
                 self._embed_textures_checkbox, self._embed_textures_container = self._build_option_checkbox(
                     "Embed Textures", False, tooltip="Currently, only FBX and glTF export supports this option.")
@@ -118,10 +118,10 @@ class ExportOptionsWindow:
                         "Export Baked MDL", False, tooltip="Baking MDL into UsdPreviewSurface before export if it's enabled.")
                 else:
                     self._export_baked_mdl_checkbox = None
-                self._export_separate_gltf_checkbox, self._separate_gltf_container = self._build_option_checkbox(
-                    "Separate .bin for Gltf", False, tooltip="Gltf with Separate bin file will be exported if it's enabled.")
-                self._export_mdl_gltf_extension_checkbox, self._mdl_gltf_extension_container = self._build_option_checkbox(
-                    "Export glTF NV_materials_mdl", False, tooltip="Materials will be exported with the NV_materials_mdl glTF extension.")
+                # self._export_separate_gltf_checkbox, self._separate_gltf_container = self._build_option_checkbox(
+                #     "Separate .bin for Gltf", False, tooltip="Gltf with Separate bin file will be exported if it's enabled.")
+                # self._export_mdl_gltf_extension_checkbox, self._mdl_gltf_extension_container = self._build_option_checkbox(
+                #     "Export glTF NV_materials_mdl", False, tooltip="Materials will be exported with the NV_materials_mdl glTF extension.")
 
                 if ENABLE_FARM_SUBMISSION:
                     self._farm_settings_widget = FarmSettingsWidget()
@@ -150,13 +150,13 @@ class ExportOptionsWindow:
         asset_upload_context.embed_textures = self._embed_textures_checkbox.model.get_value_as_bool()
         asset_upload_context.ignore_animations = not self._export_animations_checkbox.model.get_value_as_bool()
         asset_upload_context.ignore_light = not self._export_lights_checkbox.model.get_value_as_bool()
-        asset_upload_context.ignore_camera = not self._export_cameras_checkbox.model.get_value_as_bool()
+        asset_upload_context.ignore_camera = True #not self._export_cameras_checkbox.model.get_value_as_bool()
         asset_upload_context.ignore_materials = not self._export_materials_checkbox.model.get_value_as_bool()
         asset_upload_context.export_hidden_props = not self._export_visible_only_checkbox.model.get_value_as_bool()
         asset_upload_context.bake_mdl_material = \
             self._export_baked_mdl_checkbox.model.get_value_as_bool() if self._export_baked_mdl_checkbox else False
-        asset_upload_context.export_separate_gltf = self._export_separate_gltf_checkbox.model.get_value_as_bool()
-        asset_upload_context.export_mdl_gltf_extension = self._export_mdl_gltf_extension_checkbox.model.get_value_as_bool()
+        asset_upload_context.export_separate_gltf = False   #self._export_separate_gltf_checkbox.model.get_value_as_bool()
+        asset_upload_context.export_mdl_gltf_extension = False  #self._export_mdl_gltf_extension_checkbox.model.get_value_as_bool()
 
         return asset_upload_context
 
@@ -237,8 +237,8 @@ class ExportOptionsWindow:
     def show(self, output_path: str):
         self._window.visible = True
         self._window.height = 0
-        self._separate_gltf_container.visible = False
-        self._mdl_gltf_extension_container.visible = False
+        # self._separate_gltf_container.visible = False
+        # self._mdl_gltf_extension_container.visible = False
         self._export_animations_containter.visible = False
         self._embed_textures_container.visible = False
         if output_path:
@@ -247,9 +247,9 @@ class ExportOptionsWindow:
             if ext == ".gltf" or ext == ".glb" or ext == ".fbx":
                 self._export_animations_containter.visible = True
                 self._embed_textures_container.visible = True
-            if ext == ".gltf" or ext == ".glb":
-                self._separate_gltf_container.visible = True
-                self._mdl_gltf_extension_container.visible = True
+            # if ext == ".gltf" or ext == ".glb":
+            #     self._separate_gltf_container.visible = True
+            #     self._mdl_gltf_extension_container.visible = True
 
     def hide(self):
         self._window.visible = False

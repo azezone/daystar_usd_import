@@ -59,7 +59,6 @@ class DWTool:
 
     def getAssetByName(self,file_name):
         carb.log_info(f"getAssetByName:{file_name}")
-        # url = f"{self.domain}/platform/api/v1/asset/contents/page?current=1&size=99999&type_in=model&platform=windows&name={file_name}"
         url = f"{self.domain}/platform/api/v1/asset/contents/page?current=1&size=99999&type_in=model&platform=windows"
         headers = {"Authorization": "Bearer " + self.token}
         response = requests.get(url, headers=headers)
@@ -67,7 +66,6 @@ class DWTool:
         data = json.loads(response.text)
         if data and data["data"]["records"]:
             for item in data["data"]["records"]:
-                # carb.log_info(f"name:{item['name']} target:{file_name}")
                 if file_name == item['name']:
                     return item['id']
         return ''           
@@ -83,8 +81,6 @@ class DWTool:
         
         headers = {"Authorization": "Bearer " + self.token}
         id = self.getAssetByName(file_name)
-        carb.log_info(f"getAssetByName:" + id)
-        
         if not id == '':
             # 更新逻辑
             carb.log_info(f"**********update_asset**********")

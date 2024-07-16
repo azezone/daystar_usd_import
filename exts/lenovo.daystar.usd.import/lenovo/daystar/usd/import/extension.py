@@ -42,7 +42,6 @@ class AssetImporterExtension(omni.ext.IExt):
         self._file_menu_list = []
         self._register_menus()
         self.dwTool =DWTool()
-        # self._update_sub = omni.kit.app.get_app().get_update_event_stream().create_subscription_to_pop(self.on_update)
 
     def on_shutdown(self):
         carb.log_info(f"**********on_shutdown**********")
@@ -56,13 +55,6 @@ class AssetImporterExtension(omni.ext.IExt):
         self._new_content_window = None
         self._exporter.on_shutdown()
         self._exporter = None
-
-        # if self._update_sub:
-        #     self._update_sub.unsubscribe()
-        #     self._update_sub = None
-
-    # def on_update(self,delta_time):
-    #     carb.log_info(f"**********on_update*********")
 
     def _unregister_menus(self):
         if self._file_menu_list:

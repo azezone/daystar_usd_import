@@ -1,4 +1,3 @@
-# Python Extension Example [lenovo.daystar.usd.importer]
+# usd import to daystar world Extension [lenovo.daystar.usd.importer]
 
-This is an extension to transform usd file to daystar world platform. 
-
+  Convert usd file to daystar world
